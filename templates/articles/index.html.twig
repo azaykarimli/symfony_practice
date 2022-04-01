@@ -1,0 +1,56 @@
+{% extends "base.html.twig" %}
+
+
+{% block title %}
+	Symf Arts
+{% endblock %}
+
+{% block body %}
+	<h1>Articles</h1>
+
+	{% if articles %}
+		<div class="container">
+			<table id="articles" class="table table.striped">
+
+				<thead>
+					<tr>
+						<th>Article Title</th>
+						<th>Body</th>
+						<th>Action</th>
+						<th>Action Edit</th>
+						<th>X</th>
+					</tr>
+				</thead>
+
+				<tbody>
+
+					{% for article in articles %}
+						<tr>
+							<td>{{ article.title }}</td>
+							<td>{{ article.body }}</td>
+							<td>
+								<a href="/article/{{article.id}}" class="btn btn-dark">Show</a>
+							</td>
+							<td>
+								<a href="/article/crud/edit/{{article.id}}" class="btn btn-light">Edit</a>
+							</td>
+							<td>
+								<a id-data="{{article.id}}" class="btn btn-danger delete-article">Delete</a>
+							</td>
+						</tr>
+					{% endfor %}
+
+				</tbody>
+
+			</table>
+		</div>
+
+	{% else %}
+		<p>No article to display</p>
+	{% endif %}
+
+{% endblock %}
+
+{% block javascripts %}
+	<script src="/js/main.js"></script>
+{% endblock %}
